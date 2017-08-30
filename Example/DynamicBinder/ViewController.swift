@@ -9,16 +9,43 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+  
+  // MARK: - @IBOutlets
+  @IBOutlet private weak var tapCounterLabel: UILabel!
+  @IBOutlet private weak var changeTextColorButton: UIButton!
+  
+  
+  // MARK: - Private Instance Attributes
+  let viewModel = ExampleViewModel()
+  
+  
+  // MARK: - Lyfecicle
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    setup()
+  }
+  
+  
+  // MARK: - @IBActions
+  @IBAction func changeTextColorTapped() {
+    viewModel.changeTextColor()
+  }
+  
+  
+  // MARK: - Private Instance Methods
+  private func setup() {
+    viewModel.tapCounter.bind(with: self) { [weak self] tapCounter in
+      DispatchQueue.main.async {
+        self?.tapCounterLabel.text = "\(tapCounter)"
+      }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    viewModel.textColor.bindAndFire(with: self) { [weak self] textColor in
+      guard let textColor = textColor else { return }
+      DispatchQueue.main.async {
+        self?.changeTextColorButton.setTitleColor(textColor, for: .normal)
+        self?.tapCounterLabel.textColor = textColor
+      }
     }
-
+  }
 }
 

@@ -1,6 +1,7 @@
 use_frameworks!
 
 target 'DynamicBinder_Example' do
+  platform :ios, '8.0'
   pod 'DynamicBinder', :path => '../'
 
   target 'DynamicBinder_Tests' do
