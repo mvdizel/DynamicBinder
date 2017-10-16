@@ -7,7 +7,7 @@
 //
 
 // MARK: - Typealias
-typealias BindedHandler<T> = (T) -> Void
+public typealias BindedHandler<T> = (T) -> Void
 
 public struct DynamicBinderInterface<T> {
   
@@ -89,7 +89,7 @@ public class DynamicBinder<T> {
   /// Fires all listeners and cleans deallocated observers.
   private func fireListeners() {
     listeners = listeners.flatMap({
-      guard let handler = $0.handler, $0.observer != nil else {
+      guard let handler = $0.handler, let _ = $0.observer else {
         return nil
       }
       handler(value)
