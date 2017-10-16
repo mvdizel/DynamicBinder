@@ -12,11 +12,11 @@ public typealias BindedHandler<T> = (T) -> Void
 public struct DynamicBinderInterface<T> {
   
   // MARK: - Public Instance Attributes
-  public var value: T { return binder.value }
+  public var value: T! { return binder?.value }
   
   
   // MARK: - Private Instance Attributes
-  private unowned let binder: DynamicBinder<T>
+  private weak var binder: DynamicBinder<T>!
   
   
   // MARK: - Initializers
@@ -26,16 +26,16 @@ public struct DynamicBinderInterface<T> {
   
   
   // MARK: - Public Instance Methods
-  public func bind(with observer: AnyObject, _ handler: BindedHandler<T>?) {
-    binder.bind(with: observer, handler)
+  public func bind(with observer: AnyObject, _ handler: @escaping BindedHandler<T>) {
+    binder?.bind(with: observer, handler)
   }
   
-  public func bindAndFire(with observer: AnyObject, _ handler: BindedHandler<T>?) {
-    binder.bindAndFire(with: observer, handler)
+  public func bindAndFire(with observer: AnyObject, _ handler: @escaping BindedHandler<T>) {
+    binder?.bindAndFire(with: observer, handler)
   }
   
   public func unbind(_ observer: AnyObject) {
-    binder.unbind(observer)
+    binder?.unbind(observer)
   }
 }
 
@@ -67,24 +67,22 @@ public class DynamicBinder<T> {
     fireListeners()
   }
   
-  
-  // MARK: - Private Instance Methods
-  fileprivate func bind(with observer: AnyObject, _ handler: BindedHandler<T>?) {
+  public func bind(with observer: AnyObject, _ handler: @escaping BindedHandler<T>) {
     let listener = Listener(observer, handler)
     listeners.append(listener)
   }
   
-  fileprivate func bindAndFire(with observer: AnyObject, _ handler: BindedHandler<T>?) {
+  public func bindAndFire(with observer: AnyObject, _ handler: @escaping BindedHandler<T>) {
     bind(with: observer, handler)
-    handler?(value)
+    handler(value)
   }
   
-  fileprivate func unbind(_ observer: AnyObject) {
-    listeners = listeners.filter({
-      guard let observerInArray = $0.observer else { return false }
-      return observer !== observerInArray
-    })
+  public func unbind(_ observer: AnyObject) {
+    listeners = listeners.filter({ $0.observer !== observer && $0.observer != nil })
   }
+  
+  
+  // MARK: - Private Instance Methods
   
   /// Fires all listeners and cleans deallocated observers.
   private func fireListeners() {
@@ -101,9 +99,14 @@ public class DynamicBinder<T> {
 
 // MARK: - Listener
 private struct Listener<T> {
+  
+  // MARK: - Public Instance Attributes
   weak var observer: AnyObject?
   var handler: BindedHandler<T>?
-  init(_ observer: AnyObject, _ handler: BindedHandler<T>?) {
+  
+  
+  // MARK: - Initializers
+  init(_ observer: AnyObject, _ handler: @escaping BindedHandler<T>) {
     self.observer = observer
     self.handler = handler
   }

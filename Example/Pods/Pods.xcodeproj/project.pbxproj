@@ -9,8 +9,9 @@
 /* Begin PBXBuildFile section */
 		025261730C0D7AE692491E5014DCB139 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		0C89BB4618FB1075F41A79D3A4F10445 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		1C6478573075642946883C361EF00E3B /* DynamicBinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233BF0DF657325296028DBF203853DC0 /* DynamicBinder.swift */; };
 		33C9CE49F39A0DB117E461B516DF4D8A /* Pods-DynamicBinder_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F59FB6612A9F86525F49EEB17410671 /* Pods-DynamicBinder_Tests-dummy.m */; };
+		4D8B72661F955244000CD8BD /* DynamicBinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233BF0DF657325296028DBF203853DC0 /* DynamicBinder.swift */; };
+		4D8B72681F955298000CD8BD /* DynamicBinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233BF0DF657325296028DBF203853DC0 /* DynamicBinder.swift */; };
 		5F26AE8EFCE2D2505854C2D78A06F25E /* Pods-DynamicBinder_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3479D03674EF879D5805CDB6BD746A57 /* Pods-DynamicBinder_Example-dummy.m */; };
 		992399B891244243B89D7B27C33EDC7A /* Pods-DynamicBinder_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3575EE83556849C08ABD539E5F9B37AE /* Pods-DynamicBinder_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BB72054C698AE63E72DDCA082C9DC2CE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
@@ -300,6 +301,9 @@
 					62DBAC60BEC58D74BE44C8B56112FB84 = {
 						LastSwiftMigration = 0900;
 					};
+					B06F35C454081B8C3915201B5809C0A6 = {
+						LastSwiftMigration = 0900;
+					};
 				};
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
@@ -335,7 +339,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F35D59718E08033B60DDEE5C007A1BFB /* DynamicBinder-dummy.m in Sources */,
-				1C6478573075642946883C361EF00E3B /* DynamicBinder.swift in Sources */,
+				4D8B72681F955298000CD8BD /* DynamicBinder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,6 +348,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				33C9CE49F39A0DB117E461B516DF4D8A /* Pods-DynamicBinder_Tests-dummy.m in Sources */,
+				4D8B72661F955244000CD8BD /* DynamicBinder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,7 +392,6 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -548,6 +552,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 36FA6F38064E5C3A7233A67525397651 /* Pods-DynamicBinder_Tests.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -574,6 +579,8 @@
 				PRODUCT_NAME = Pods_DynamicBinder_Tests;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -622,6 +629,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E68B1B836A095B5946897932693E8618 /* Pods-DynamicBinder_Tests.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -648,6 +656,7 @@
 				PRODUCT_NAME = Pods_DynamicBinder_Tests;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -682,7 +691,6 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
