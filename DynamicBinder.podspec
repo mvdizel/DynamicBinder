@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'DynamicBinder'
-  s.version          = '0.1.0'
-  s.summary          = 'A short description of DynamicBinder.'
+  s.version          = '0.0.1'
+  s.summary          = 'DynamicBinder fires handlers every time, when stored value changes.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -17,9 +17,7 @@ Pod::Spec.new do |s|
 #   * Write the description between the DESC delimiters below.
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
-  s.description      = <<-DESC
-TODO: Add long description of the pod here.
-                       DESC
+  s.description      = 'Allows you to update states of attributes when it is necessary. Can be used as bridge between model and view model and views.'
 
   s.homepage         = 'https://github.com/mvdizel/DynamicBinder'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
